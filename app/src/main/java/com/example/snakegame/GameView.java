@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -19,7 +20,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private volatile boolean running = false;
     private final SurfaceHolder holder;
 
-    // velocidad de la serpiente -> que se pueda cambiar en opciones
+    // velocidad de la serpiente
     private long moveDelayMillis = 150;
     private long lastMoveTime = 0;
 
@@ -34,8 +35,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private Direction nextDirection = Direction.RIGHT;
 
     // "comida"
-    private Point food;
+    private final ArrayList<Point> foods = new ArrayList<>();
     private final Random random = new Random();
+    private static final int MAX_FOODS = 3;
 
     // estado juego
     private boolean gameOver = false;
@@ -43,6 +45,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
     // pintura
     private final Paint paint = new Paint();
+    private int snakeColor = Color.GREEN;
 
     // controles con swipe
     private float touchStartX, touchStartY;
@@ -56,12 +59,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         holder.addCallback(this);
         setFocusable(true);
 
-        // Cargar velocidad configurada en Opciones
+        //  velocidad y color configurado de opciones
         SharedPreferences prefs = context.getSharedPreferences("SnakePrefs", Context.MODE_PRIVATE);
         moveDelayMillis = prefs.getLong("speed_delay", 150);
+        snakeColor = prefs.getInt("snake_color", Color.GREEN);
     }
 
-    // Surface
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         numColumns = getWidth() / cellSize;
@@ -110,8 +113,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             }
 
             draw();
-
-            // Pequeña pausa para no consumir CPU al 100%
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -128,26 +129,29 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         gameOver = false;
         score = 0;
 
-        // Serpiente inicial de 3 segmentos en el centro de la grilla
         int startCol = numColumns / 2;
         int startRow = numRows / 2;
         snake.add(new Point(startCol, startRow));
         snake.add(new Point(startCol - 1, startRow));
         snake.add(new Point(startCol - 2, startRow));
 
+        foods.clear();
         spawnFood();
     }
 
     private void spawnFood() {
         if (numColumns <= 0 || numRows <= 0) return;
-        Point newFood;
-        do {
-            int col = random.nextInt(numColumns);
-            int row = random.nextInt(numRows);
-            newFood = new Point(col, row);
-        } while (snake.contains(newFood)); // que no aparezca encima de la serpiente
 
-        food = newFood;
+        while (foods.size() < MAX_FOODS) {
+            Point newFood;
+            do {
+                int col = random.nextInt(numColumns);
+                int row = random.nextInt(numRows);
+                newFood = new Point(col, row);
+            } while (snake.contains(newFood) || foods.contains(newFood));
+
+            foods.add(newFood);
+        }
     }
 
     // tick del juego
@@ -187,18 +191,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
         snake.addFirst(newHead);
 
-        boolean ateFood = food != null && newHead.equals(food);
+        boolean ateFood = false;
+        for (int i = 0; i < foods.size(); i++) {
+            if (newHead.equals(foods.get(i))) {
+                foods.remove(i);
+                ateFood = true;
+                break;
+            }
+        }
+
         if (ateFood) {
             score++;
             spawnFood();
-            // No quitamos la cola: la serpiente crece
         } else {
             snake.removeLast();
         }
     }
 
     // Dibujo
-    // ============================================================
 
     private void draw() {
         if (!holder.getSurface().isValid()) return;
@@ -207,23 +217,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         if (canvas == null) return;
 
         try {
-            // Fondo
             canvas.drawColor(Color.BLACK);
-
-            // Comida
-            if (food != null) {
-                paint.setColor(Color.RED);
+            paint.setColor(Color.RED);
+            for (Point f : foods) {
                 canvas.drawRect(
-                        food.x * cellSize,
-                        food.y * cellSize,
-                        food.x * cellSize + cellSize,
-                        food.y * cellSize + cellSize,
+                        f.x * cellSize,
+                        f.y * cellSize,
+                        f.x * cellSize + cellSize,
+                        f.y * cellSize + cellSize,
                         paint
                 );
             }
 
             // Serpiente
-            paint.setColor(Color.GREEN);
+            paint.setColor(snakeColor);
             for (Point p : snake) {
                 canvas.drawRect(
                         p.x * cellSize,
@@ -239,7 +246,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             paint.setTextSize(50);
             canvas.drawText("Puntaje: " + score, 20, 60, paint);
 
-            // Mensaje de Game Over
+            // Game Over
             if (gameOver) {
                 paint.setTextSize(80);
                 paint.setColor(Color.WHITE);
@@ -253,9 +260,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         }
     }
 
-    // ============================================================
-    // Control por deslizamiento (swipe)
-    // ============================================================
+
+    // Control por swipe
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -264,7 +271,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
                 touchStartX = event.getX();
                 touchStartY = event.getY();
 
-                // Si tocás la pantalla estando en Game Over, reiniciamos
                 if (gameOver) {
                     initGame();
                 }
@@ -275,19 +281,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
                 float deltaY = event.getY() - touchStartY;
 
                 if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < SWIPE_THRESHOLD) {
-                    // El movimiento fue muy corto, lo ignoramos (evita toques accidentales)
                     return true;
                 }
 
                 if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    // Swipe horizontal
                     if (deltaX > 0 && currentDirection != Direction.LEFT) {
                         nextDirection = Direction.RIGHT;
                     } else if (deltaX < 0 && currentDirection != Direction.RIGHT) {
                         nextDirection = Direction.LEFT;
                     }
                 } else {
-                    // Swipe vertical
                     if (deltaY > 0 && currentDirection != Direction.UP) {
                         nextDirection = Direction.DOWN;
                     } else if (deltaY < 0 && currentDirection != Direction.DOWN) {
@@ -299,9 +302,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
         return super.onTouchEvent(event);
     }
 
-    // ============================================================
-    // Métodos públicos por si querés controlar también con botones
-    // ============================================================
+    // botones
 
     public void setDirectionUp() {
         if (currentDirection != Direction.DOWN) nextDirection = Direction.UP;
