@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1E1E1E"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/txtOptionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Opciones"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tamaño del mapa (Columnas):"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgGridSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/rbGrid15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chico (15 casillas)"
+            android:textColor="#CCCCCC" />
+
+        <RadioButton
+            android:id="@+id/rbGrid20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal (20 casillas)"
+            android:textColor="#CCCCCC"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbGrid25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grande (25 casillas)"
+            android:textColor="#CCCCCC" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Velocidad del juego:"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
+
+        <RadioButton
+            android:id="@+id/rbSpeedSlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lento"
+            android:textColor="#CCCCCC" />
+
+        <RadioButton
+            android:id="@+id/rbSpeedNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:textColor="#CCCCCC"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbSpeedFast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rápido"
+            android:textColor="#CCCCCC" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSaveOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Opciones" />
+
+</LinearLayout>
