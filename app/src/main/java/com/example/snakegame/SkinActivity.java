@@ -19,12 +19,11 @@ public class SkinActivity extends AppCompatActivity {
 
         RadioGroup rgSkinColor = findViewById(R.id.rgSkinColor);
         Button btnSave = findViewById(R.id.btnSaveSkinOptions);
+        Button btnAtras = findViewById(R.id.btnAtrasSkin);
 
-        // Cargar el color guardado actualmente (o verde por defecto)
         SharedPreferences prefs = getSharedPreferences("SnakePrefs", Context.MODE_PRIVATE);
         int currentColor = prefs.getInt("snake_color", Color.GREEN);
 
-        // Seleccionar la opción correspondiente
         if (currentColor == Color.GREEN) {
             rgSkinColor.check(R.id.GreenSkinColor);
         } else if (currentColor == Color.BLUE) {
@@ -38,7 +37,6 @@ public class SkinActivity extends AppCompatActivity {
         }
 
         btnSave.setOnClickListener(v -> {
-            // Determinar qué color eligió el usuario
             int selectedColor;
             int checkedId = rgSkinColor.getCheckedRadioButtonId();
 
@@ -54,7 +52,6 @@ public class SkinActivity extends AppCompatActivity {
                 selectedColor = Color.GREEN;
             }
 
-            // Guardarlo en las preferencias
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("snake_color", selectedColor);
             editor.apply();
@@ -62,5 +59,7 @@ public class SkinActivity extends AppCompatActivity {
             Toast.makeText(this, "Skin guardada", Toast.LENGTH_SHORT).show();
             finish();
         });
+
+        btnAtras.setOnClickListener(v -> finish());
     }
 }

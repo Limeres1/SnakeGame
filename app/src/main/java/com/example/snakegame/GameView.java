@@ -25,7 +25,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private long lastMoveTime = 0;
 
     // grilla del mapa
-    private final int cellSize = 40;
+    private final int cellSize = 60;
     private int numColumns;
     private int numRows;
 

@@ -20,6 +20,7 @@ public class OptionsActivity extends AppCompatActivity {
         rgGridSize = findViewById(R.id.rgGridSize);
         rgSpeed = findViewById(R.id.rgSpeed);
         Button btnSave = findViewById(R.id.btnSaveOptions);
+        Button btnAtras = findViewById(R.id.btnAtrasOptions);
 
         SharedPreferences prefs = getSharedPreferences("SnakePrefs", MODE_PRIVATE);
 
@@ -53,5 +54,7 @@ public class OptionsActivity extends AppCompatActivity {
             Toast.makeText(this, "Opciones guardadas", Toast.LENGTH_SHORT).show();
             finish();
         });
+
+        btnAtras.setOnClickListener(v -> finish());
     }
 }

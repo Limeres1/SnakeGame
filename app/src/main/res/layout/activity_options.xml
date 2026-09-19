@@ -1,99 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1E1E1E"
+    android:background="#000000"
     android:padding="24dp">
 
     <TextView
         android:id="@+id/txtOptionsTitle"
+        android:fontFamily="@font/snakefont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Opciones"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textColor="#AAAE7F"
+        android:textSize="28sp"
+        android:letterSpacing="0.05"
+        android:shadowColor="#1E3119"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1.5" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tamaño del mapa (Columnas):"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <RadioGroup
-        android:id="@+id/rgGridSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp">
-
-        <RadioButton
-            android:id="@+id/rbGrid15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chico (15 casillas)"
-            android:textColor="#CCCCCC" />
-
-        <RadioButton
-            android:id="@+id/rbGrid20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Normal (20 casillas)"
-            android:textColor="#CCCCCC"
-            android:checked="true" />
-
-        <RadioButton
-            android:id="@+id/rbGrid25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grande (25 casillas)"
-            android:textColor="#CCCCCC" />
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:fontFamily="@font/snakefont"
         android:layout_height="wrap_content"
         android:text="Velocidad del juego:"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textColor="#AAAE7F"
+        android:textSize="18sp"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="8dp" />
 
     <RadioGroup
         android:id="@+id/rgSpeed"
+        android:fontFamily="@font/snakefont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp">
 
         <RadioButton
             android:id="@+id/rbSpeedSlow"
+            android:fontFamily="@font/snakefont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lento"
-            android:textColor="#CCCCCC" />
+            android:textColor="#AAAE7F"
+            android:textSize="16sp"
+            android:letterSpacing="0.05"
+            app:buttonTint="#AAAE7F" />
 
         <RadioButton
             android:id="@+id/rbSpeedNormal"
+            android:fontFamily="@font/snakefont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Normal"
-            android:textColor="#CCCCCC"
+            android:textColor="#AAAE7F"
+            android:textSize="16sp"
+            android:letterSpacing="0.05"
+            app:buttonTint="#AAAE7F"
             android:checked="true" />
 
         <RadioButton
             android:id="@+id/rbSpeedFast"
+            android:fontFamily="@font/snakefont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rápido"
-            android:textColor="#CCCCCC" />
+            android:textColor="#AAAE7F"
+            android:textSize="16sp"
+            android:letterSpacing="0.05"
+            app:buttonTint="#AAAE7F" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnSaveOptions"
+        android:fontFamily="@font/snakefont"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar Opciones" />
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:text="GUARDAR"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:backgroundTint="#1E3119" />
+
+    <Button
+        android:id="@+id/btnAtrasOptions"
+        android:fontFamily="@font/snakefont"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="VOLVER"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:backgroundTint="#1E3119" />
 
 </LinearLayout>

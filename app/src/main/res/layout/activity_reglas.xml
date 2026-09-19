@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#000000"
+    android:padding="24dp">
+
+    <TextView
+        android:fontFamily="@font/snakefont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="REGLAS"
+        android:textColor="#AAAE7F"
+        android:textSize="50sp"
+        android:letterSpacing="0.09"
+        android:shadowColor="#1E3119"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="1.5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/snakefont"
+        android:text="- Deslizá el dedo por la pantalla para mover la serpiente."
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:lineSpacingExtra="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/snakefont"
+        android:text="- Comé la comida roja para crecer y sumar puntos."
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:lineSpacingExtra="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/snakefont"
+        android:text="- Si chocás contra las paredes o contra tu propio cuerpo, perdés."
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:lineSpacingExtra="8dp" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/snakefont"
+        android:letterSpacing="0.05"
+        android:text="VOLVER"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        app:backgroundTint="#1E3119" />
+
+</LinearLayout>

@@ -1,35 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#121212"
+    android:background="#000000"
     android:padding="24dp">
 
     <TextView
         android:id="@+id/txtTitle"
+        android:fontFamily="@font/snakefont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:text="SNAKE GAME"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        android:text="SNAKE"
+        android:textColor="#AAAE7F"
+        android:textSize="65sp"
+        android:letterSpacing="0.09"
+        android:shadowColor="#1E3119"
+        android:shadowDx="14"
+        android:shadowDy="12"
+        android:shadowRadius="1.5" />
 
     <Button
         android:id="@+id/btnPlay"
+        android:fontFamily="@font/snakefont"
         android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:text="JUGAR"
-        android:textSize="18sp" />
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:backgroundTint="#1E3119" />
 
     <Button
         android:id="@+id/btnOptions"
         android:layout_width="220dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/snakefont"
+        android:letterSpacing="0.05"
         android:text="OPCIONES"
-        android:textSize="18sp" />
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        app:backgroundTint="#1E3119" />
+
+    <Button
+        android:id="@+id/btnSkins"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/snakefont"
+        android:letterSpacing="0.05"
+        android:text="SKINS"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        app:backgroundTint="#1E3119" />
+
+    <Button
+        android:id="@+id/btnReglas"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/snakefont"
+        android:letterSpacing="0.05"
+        android:text="REGLAS"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        app:backgroundTint="#1E3119" />
 
 </LinearLayout>

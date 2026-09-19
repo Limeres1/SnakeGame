@@ -1,10 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SkinActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#000000"
+    android:padding="24dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/snakefont"
+        android:layout_height="wrap_content"
+        android:text="Skins disponibles:"
+        android:textColor="#AAAE7F"
+        android:textSize="24sp"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="24dp"
+        android:shadowColor="#1E3119"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1.5" />
+
+    <RadioGroup
+        android:id="@+id/rgSkinColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
+
+        <RadioButton
+            android:id="@+id/GreenSkinColor"
+            android:fontFamily="@font/snakefont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verde"
+            android:textColor="#AAAE7F"
+            android:textSize="18sp"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="8dp"
+            app:buttonTint="#AAAE7F" />
+
+        <RadioButton
+            android:id="@+id/BlueSkinColor"
+            android:fontFamily="@font/snakefont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Azul"
+            android:textColor="#AAAE7F"
+            android:textSize="18sp"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="8dp"
+            app:buttonTint="#AAAE7F" />
+
+        <RadioButton
+            android:id="@+id/WhiteSkinColor"
+            android:fontFamily="@font/snakefont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blanco"
+            android:textColor="#AAAE7F"
+            android:textSize="18sp"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="8dp"
+            app:buttonTint="#AAAE7F" />
+
+        <RadioButton
+            android:id="@+id/RedSkinColor"
+            android:fontFamily="@font/snakefont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rojo"
+            android:textColor="#AAAE7F"
+            android:textSize="18sp"
+            android:letterSpacing="0.05"
+            app:buttonTint="#AAAE7F" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSaveSkinOptions"
+        android:fontFamily="@font/snakefont"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:text="GUARDAR"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:backgroundTint="#1E3119" />
+
+    <Button
+        android:id="@+id/btnAtrasSkin"
+        android:fontFamily="@font/snakefont"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="VOLVER"
+        android:textColor="#AAAE7F"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:backgroundTint="#1E3119" />
+</LinearLayout>

@@ -14,14 +14,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
-        gameView.pause();
+        if (gameView != null) {
+            gameView.pause();
+        }
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        gameView.resume();
     }
 }

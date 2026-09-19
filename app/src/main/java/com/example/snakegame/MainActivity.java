@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnPlay = findViewById(R.id.btnPlay);
         Button btnOptions = findViewById(R.id.btnOptions);
+        Button btnSkins = findViewById(R.id.btnSkins);
+        Button btnReglas = findViewById(R.id.btnReglas);
 
         btnPlay.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GameActivity.class);
@@ -22,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
         btnOptions.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, OptionsActivity.class);
+            startActivity(intent);
+        });
+
+        btnSkins.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SkinActivity.class);
+            startActivity(intent);
+        });
+
+        btnReglas.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Reglas.class);
             startActivity(intent);
         });
     }
