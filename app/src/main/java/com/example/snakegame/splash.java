@@ -28,7 +28,6 @@ public class splash extends AppCompatActivity {
             return insets;
         });
 
-        // Configurar e iniciar la animación del logo
         ImageView logo = findViewById(R.id.imageView);
         Animator animator = AnimatorInflater.loadAnimator(this, R.animator.logo_animator);
         animator.setTarget(logo);
@@ -39,8 +38,8 @@ public class splash extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(splash.this, MainActivity.class);
                 startActivity(intent);
-                finish(); // Para que no se pueda volver al splash apretando "Atrás"
+                finish();
             }
-        }, 3000);
+        }, 2000);
     }
 }
